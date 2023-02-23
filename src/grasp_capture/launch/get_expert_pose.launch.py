@@ -28,7 +28,7 @@ def generate_launch_description() -> LaunchDescription:
     # Get substitution for all arguments
     description_package = LaunchConfiguration("description_package")
     description_filepath = LaunchConfiguration("description_filepath")
-    moveit_config_package = "moveit_resources_panda_moveit_config"
+    moveit_config_package = "moveit_resources_panda_moveit_config" # A créer
     robot_type = LaunchConfiguration("robot_type")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -145,7 +145,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # Locations of robot resources
         DeclareLaunchArgument(
             "description_package",
-            default_value="moveit_resources_panda_description",
+            default_value="moveit_resources_panda_description", # A crér
             description="Custom package with robot description.",
         ),
         DeclareLaunchArgument(

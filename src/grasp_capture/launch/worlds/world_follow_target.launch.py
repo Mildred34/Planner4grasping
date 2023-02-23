@@ -43,7 +43,7 @@ def generate_launch_description() -> LaunchDescription:
 
     # List of nodes to be launched
     nodes = [
-        # ros_ign_bridge (clock -> ROS 2)
+        # ros_gz_bridge (clock -> ROS 2)
         Node(
             package="ros_gz_bridge",
             executable="parameter_bridge",
@@ -56,7 +56,7 @@ def generate_launch_description() -> LaunchDescription:
             ],
             parameters=[{"use_sim_time": use_sim_time}],
         ),
-        # ros_ign_bridge (target pose -> ROS 2)
+        # ros_gz_bridge (target pose -> ROS 2)
         Node(
             package="ros_gz_bridge",
             executable="parameter_bridge",

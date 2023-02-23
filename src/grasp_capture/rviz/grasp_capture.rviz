@@ -63,65 +63,65 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          panda_hand:
+          fingrip_hand:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_hand_tcp:
+          fingrip_hand_tcp:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          panda_leftfinger:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          panda_link0:
+          fingrip_leftfinger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link1:
+          fingrip_link0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link2:
+          fingrip_link1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link3:
+          fingrip_link2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link4:
+          fingrip_link3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link5:
+          fingrip_link4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link6:
+          fingrip_link5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link7:
+          fingrip_link6:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link8:
+          fingrip_link7:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          panda_rightfinger:
+            Value: true
+          fingrip_link8:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          fingrip_rightfinger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -175,65 +175,65 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          panda_hand:
+          fingrip_hand:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_hand_tcp:
+          fingrip_hand_tcp:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          panda_leftfinger:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          panda_link0:
+          fingrip_leftfinger:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link1:
+          fingrip_link0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link2:
+          fingrip_link1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link3:
+          fingrip_link2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link4:
+          fingrip_link3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link5:
+          fingrip_link4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link6:
+          fingrip_link5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link7:
+          fingrip_link6:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          panda_link8:
+          fingrip_link7:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          panda_rightfinger:
+            Value: true
+          fingrip_link8:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          fingrip_rightfinger:
             Alpha: 1
             Show Axes: false
             Show Trail: false

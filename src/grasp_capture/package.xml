@@ -15,9 +15,14 @@
 
   <depend>rclcpp</depend>
   <depend>rclpy</depend>
-  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
   <depend>moveit_ros_planning_interface</depend>
   <depend>moveit_visual_tools</depend>
+
+  <exec_depend>moveit</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>ros_gz_gazebo</exec_depend>
+  <exec_depend>rviz2</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

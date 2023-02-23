@@ -79,14 +79,15 @@ def generate_launch_description() -> LaunchDescription:
                 ("log_level", log_level),
             ],
         ),
-        # Launch move_group of MoveIt 2
+        # Launch move_group of MoveIt 2 in RViz2
+        # NEED TO Create the package for my robot
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 PathJoinSubstitution(
                     [
-                        FindPackageShare(["moveit_resources_",robot_type, "_moveit_config"]),
+                        FindPackageShare([robot_type, "_moveit_config"]),
                         "launch",
-                        "demo.launch.py", # previously move_group
+                        "move_group.launch.py", # previously move_group
                     ]
                 )
             ),
@@ -120,7 +121,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # Robot selection
         DeclareLaunchArgument(
             "robot_type",
-            default_value="panda",
+            default_value="fingrip",
             description="Name of the robot type to use.",
         ),
         # Miscellaneous

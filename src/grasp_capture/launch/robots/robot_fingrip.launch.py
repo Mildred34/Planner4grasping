@@ -43,7 +43,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # Model for Ignition Gazebo
         DeclareLaunchArgument(
             "model",
-            default_value="panda",
+            default_value="fingrip",
             description="Name or filepath of model to load.",
         ),
         # Miscellaneous
