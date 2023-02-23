@@ -4,6 +4,6 @@
 [submodule "src/gz_ros2_control"]
 	path = src/gz_ros2_control
 	url = git@github.com:Mildred34/gz_ros2_control.git
-[submodule "src/ros_gz"]
-	path = src/ros_gz
+[submodule "src/ros_ign"]
+	path = src/ros_ign
 	url = git@github.com:Mildred34/ros_gz.git
