@@ -1,9 +1,9 @@
 [submodule "src/ros_ign"]
 	path = src/ros_ign
 	url = git@github.com:Mildred34/ros_gz.git
-[submodule "src/gz_ros2_control"]
-	path = src/gz_ros2_control
-	url = git@github.com:Mildred34/gz_ros2_control.git
 [submodule "src/fingrip_ign_moveit2"]
 	path = src/fingrip_ign_moveit2
 	url = git@github.com:Mildred34/fingrip_ign_moveit2.git
+[submodule "src/gz_ros2_control"]
+	path = src/gz_ros2_control
+	url = git@github.com:Mildred34/gz_ros2_control.git
