@@ -10,7 +10,7 @@ MoveItFollowTarget::MoveItFollowTarget() : Node("ex_follow_target"),
   // Subscribe to target pose
   target_pose_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>("/target_pose", rclcpp::QoS(1), std::bind(&MoveItFollowTarget::target_pose_callback, this, std::placeholders::_1));
 
-  RCLCPP_INFO(this->get_logger(), "Initialization successful.");
+  RCLCPP_WARN(this->get_logger(), "Initialization successful.");
 }
 
 void MoveItFollowTarget::target_pose_callback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
@@ -21,7 +21,8 @@ void MoveItFollowTarget::target_pose_callback(const geometry_msgs::msg::PoseStam
     return;
   }
 
-  RCLCPP_INFO(this->get_logger(), "Target pose has changed. Planning and executing...");
+  //RCLCPP_INFO(this->get_logger(), "Target pose has changed. Planning and executing...");
+  RCLCPP_WARN(this->get_logger(), "Target pose has changed. Planning and executing...");
 
   // Plan and execute motion
   this->move_group_.setPoseTarget(msg->pose);

@@ -47,7 +47,7 @@ def generate_launch_description() -> LaunchDescription:
             executable="parameter_bridge",
             output="screen",
             arguments=[
-                "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+                "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
                 "--ros-args",
                 "--log-level",
                 log_level

@@ -28,7 +28,7 @@ def generate_launch_description() -> LaunchDescription:
     # Get substitution for all arguments
     description_package = LaunchConfiguration("description_package")
     description_filepath = LaunchConfiguration("description_filepath")
-    moveit_config_package = "moveit_resources_panda_moveit_config" # A créer
+    moveit_config_package = "fingrip_moveit_config"
     robot_type = LaunchConfiguration("robot_type")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -59,7 +59,7 @@ def generate_launch_description() -> LaunchDescription:
                 [
                     FindPackageShare(moveit_config_package),
                     "srdf",
-                    "panda.srdf.xacro",
+                    "fingrip.srdf.xacro",
                 ]
             ),
             " ",
@@ -145,18 +145,18 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # Locations of robot resources
         DeclareLaunchArgument(
             "description_package",
-            default_value="moveit_resources_panda_description", # A crér
+            default_value="fingrip_description", # A crér
             description="Custom package with robot description.",
         ),
         DeclareLaunchArgument(
             "description_filepath",
-            default_value=path.join("urdf", "panda.urdf.xacro"),
+            default_value=path.join("urdf", "fingrip.urdf.xacro"),
             description="Path to xacro or URDF description of the robot, relative to share of `description_package`.",
         ),
         # Robot selection
         DeclareLaunchArgument(
             "robot_type",
-            default_value="panda",
+            default_value="fingrip",
             description="Name of the robot to use.",
         ),
         # Miscellaneous
@@ -171,7 +171,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "use_sim_time",
-            default_value="true",
+            default_value="false", # if true doesn't work, block the node
             description="If true, use simulated clock.",
         ),
         DeclareLaunchArgument(

@@ -19,10 +19,14 @@
   <depend>moveit_ros_planning_interface</depend>
   <depend>moveit_visual_tools</depend>
 
+  <exec_depend>ign_ros2_control</exec_depend>
   <exec_depend>moveit</exec_depend>
   <exec_depend>ros_gz_bridge</exec_depend>
   <exec_depend>ros_gz_gazebo</exec_depend>
   <exec_depend>rviz2</exec_depend>
+
+  <exec_depend>fingrip_description</exec_depend>
+  <exec_depend>fingrip_moveit_config</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

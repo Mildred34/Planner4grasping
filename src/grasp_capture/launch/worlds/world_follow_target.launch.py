@@ -49,7 +49,7 @@ def generate_launch_description() -> LaunchDescription:
             executable="parameter_bridge",
             output="log",
             arguments=[
-                "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+                "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
                 "--ros-args",
                 "--log-level",
                 log_level,
@@ -64,7 +64,7 @@ def generate_launch_description() -> LaunchDescription:
             arguments=[
                 "/model/target/pose"
                 + "@"
-                + "geometry_msgs/msg/PoseStamped[ignition.msgs.Pose",
+                + "geometry_msgs/msg/PoseStamped[gz.msgs.Pose",
                 "--ros-args",
                 "--log-level",
                 log_level,
