@@ -171,7 +171,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "use_sim_time",
-            default_value="false", # if true doesn't work, block the node
+            default_value="true", # if true doesn't work, block the node
             description="If true, use simulated clock.",
         ),
         DeclareLaunchArgument(
