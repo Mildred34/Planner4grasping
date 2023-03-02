@@ -103,6 +103,7 @@
         <publish_collision_pose>false</publish_collision_pose>
         <publish_visual_pose>false</publish_visual_pose>
       </plugin>
+      
     </model>
 
   </world>
