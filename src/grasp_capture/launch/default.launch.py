@@ -79,6 +79,7 @@ def generate_launch_description() -> LaunchDescription:
                 ("log_level", log_level),
             ],
         ),
+        
         # Launch move_group of MoveIt 2 in RViz2
         # NEED TO Create the package for my robot
         IncludeLaunchDescription(
@@ -87,7 +88,7 @@ def generate_launch_description() -> LaunchDescription:
                     [
                         FindPackageShare([robot_type, "_moveit_config"]),
                         "launch",
-                        "move_group.launch.py", # previously move_group
+                        "move_group.launch.py",
                     ]
                 )
             ),

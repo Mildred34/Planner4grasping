@@ -100,7 +100,7 @@ def generate_launch_description() -> LaunchDescription:
         # Run the example node (C++)
         Node(
             package="grasp_capture",
-            executable="ex_follow_target",
+            executable="create_planning_scene",
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[

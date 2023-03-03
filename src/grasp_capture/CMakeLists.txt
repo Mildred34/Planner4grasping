@@ -22,6 +22,8 @@ find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_visual_tools REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 install(DIRECTORY
   launch config rviz worlds
@@ -33,15 +35,18 @@ install(DIRECTORY
 include_directories(include)
 
 ## Create Cpp executable
-set(NODE_0 moveit_node)
-set(EXECUTABLE_0 ex_follow_target)
+set(NODE_0 create_planning_scene)
+set(EXECUTABLE_0 create_planning_scene)
 
 # Premier arg = nom de l'exe
 add_executable(${EXECUTABLE_0} src/${NODE_0}.cpp)
 ament_target_dependencies(${EXECUTABLE_0} rclcpp
                                  geometry_msgs
                                  moveit_ros_planning_interface
-                                 moveit_visual_tools)
+                                 moveit_visual_tools
+                                 tf2_ros
+                                 tf2_geometry_msgs
+                                 )
 
 # Install Cpp executables
 install(TARGETS
