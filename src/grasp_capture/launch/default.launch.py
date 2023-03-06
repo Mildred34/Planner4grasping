@@ -20,6 +20,7 @@ def generate_launch_description() -> LaunchDescription:
     # Get substitution for all arguments
     world_type = LaunchConfiguration("world_type")
     robot_type = LaunchConfiguration("robot_type")
+    object_type = LaunchConfiguration("object_type")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
     ign_verbosity = LaunchConfiguration("ign_verbosity")
@@ -30,6 +31,13 @@ def generate_launch_description() -> LaunchDescription:
         DeclareLaunchArgument(
             "__world_launch_basename",
             default_value=["world_", world_type, ".launch.py"],
+        ),
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "__object_launch_basename",
+            default_value=["object_fingrip.launch.py"],
         ),
     )
     
@@ -60,6 +68,26 @@ def generate_launch_description() -> LaunchDescription:
                 ("log_level", log_level),
             ],
         ),
+
+        # Spawn object
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         PathJoinSubstitution(
+        #             [
+        #                 FindPackageShare("grasp_capture"),
+        #                 "launch",
+        #                 "objects",
+        #                 LaunchConfiguration("__object_launch_basename"),
+        #             ]
+        #         )
+        #     ),
+        #     launch_arguments=[
+        #         ("use_sim_time", use_sim_time),
+        #         ("ign_verbosity", ign_verbosity),
+        #         ("log_level", log_level),
+        #         ("object_type", object_type),
+        #     ],
+        # ),
         
         # Spawn robot
         IncludeLaunchDescription(
@@ -116,7 +144,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # World selection
         DeclareLaunchArgument(
             "world_type",
-            default_value="default",
+            default_value="follow_target",
             description="Name of the world configuration to load.",
         ),
         # Robot selection
@@ -124,6 +152,12 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "robot_type",
             default_value="fingrip",
             description="Name of the robot type to use.",
+        ),
+        # Object selection
+        DeclareLaunchArgument(
+            "object_type",
+            default_value="coude",
+            description="Name of the object type to use.",
         ),
         # Miscellaneous
         DeclareLaunchArgument(

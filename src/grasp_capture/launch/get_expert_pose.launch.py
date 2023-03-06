@@ -97,7 +97,6 @@ def generate_launch_description() -> LaunchDescription:
 
     # List of nodes to be launched
     nodes = [
-        # Run the example node (C++)
         Node(
             package="grasp_capture",
             executable="create_planning_scene",

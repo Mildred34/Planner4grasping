@@ -37,16 +37,15 @@ MoveItCreatePlanningScene::MoveItCreatePlanningScene() : Node("ex_follow_target"
   box_pose.position.z = 0.2;
 
   collision_objects.primitive_poses.push_back(box_pose);
-
   collision_objects.operation = collision_objects.ADD;
 
   // Adding obstacles to the planing scene
-  planning_scene_interface_.applyCollisionObject(collision_objects);
+  // planning_scene_interface_.applyCollisionObject(collision_objects);
   // planning_scene_interface_.applyCollisionObjects(collision_objects);
 
   // Publish the collision object to the planning scene
-  publisher_ = this->create_publisher<moveit_msgs::msg::PlanningScene>("planning_scene", 10);
-  timer_ = this->create_wall_timer(500ms, std::bind(&MoveItCreatePlanningScene::timer_callback, this));
+  // publisher_ = this->create_publisher<moveit_msgs::msg::PlanningScene>("planning_scene", 10);
+  // timer_ = this->create_wall_timer(500ms, std::bind(&MoveItCreatePlanningScene::timer_callback, this));
 
   // Subscribe to target pose
   // target_pose_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>("/target_pose", rclcpp::QoS(1), std::bind(&MoveItFollowTarget::target_pose_callback, this, std::placeholders::_1));
