@@ -70,24 +70,24 @@ def generate_launch_description() -> LaunchDescription:
         ),
 
         # Spawn object
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource(
-        #         PathJoinSubstitution(
-        #             [
-        #                 FindPackageShare("grasp_capture"),
-        #                 "launch",
-        #                 "objects",
-        #                 LaunchConfiguration("__object_launch_basename"),
-        #             ]
-        #         )
-        #     ),
-        #     launch_arguments=[
-        #         ("use_sim_time", use_sim_time),
-        #         ("ign_verbosity", ign_verbosity),
-        #         ("log_level", log_level),
-        #         ("object_type", object_type),
-        #     ],
-        # ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [
+                        FindPackageShare("grasp_capture"),
+                        "launch",
+                        "objects",
+                        LaunchConfiguration("__object_launch_basename"),
+                    ]
+                )
+            ),
+            launch_arguments=[
+                ("use_sim_time", use_sim_time),
+                ("ign_verbosity", ign_verbosity),
+                ("log_level", log_level),
+                ("object_type", object_type),
+            ],
+        ),
         
         # Spawn robot
         IncludeLaunchDescription(

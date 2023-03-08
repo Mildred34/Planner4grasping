@@ -3,7 +3,7 @@
 // Moveit2
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
-#include <moveit_visual_tools/moveit_visual_tools.h>
+// #include <moveit_visual_tools/moveit_visual_tools.h>
 #include <string>
 
 #include <moveit_msgs/msg/display_robot_state.hpp>
@@ -38,21 +38,21 @@ public:
   MoveItCreatePlanningScene();
 
   /// Move group interface for the robot
-  moveit::planning_interface::MoveGroupInterface move_group_;
+  moveit::planning_interface::MoveGroupInterface _move_group_;
   /// Subscriber for target pose
-  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_sub_;
+  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr _target_pose_sub_;
   /// Target pose that is used to detect changes
-  geometry_msgs::msg::Pose previous_target_pose_;
+  geometry_msgs::msg::Pose _previous_target_pose_;
 
   // 
-  moveit::planning_interface::PlanningSceneInterface planning_scene_interface_;
-  moveit_msgs::msg::CollisionObject collision_objects;
+  moveit::planning_interface::PlanningSceneInterface _planning_scene_interface_;
+  moveit_msgs::msg::CollisionObject _collision_objects;
 
 private:
   /// Callback that plans and executes trajectory each time the target pose is changed
-  void target_pose_callback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg);
-  void timer_callback();
-  rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::Publisher<moveit_msgs::msg::PlanningScene>::SharedPtr publisher_;
+  void _target_pose_callback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg);
+  void _timer_callback();
+  rclcpp::TimerBase::SharedPtr _timer_;
+  rclcpp::Publisher<moveit_msgs::msg::PlanningScene>::SharedPtr planning_scene_diff_publisher;
 
 };

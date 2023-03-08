@@ -1,7 +1,6 @@
 #!/usr/bin/env -S ros2 launch
 """Launch C++ example for following a target"""
-
-from os import path
+import os
 from typing import List
 
 import yaml
@@ -34,6 +33,9 @@ def generate_launch_description() -> LaunchDescription:
     use_sim_time = LaunchConfiguration("use_sim_time")
     ign_verbosity = LaunchConfiguration("ign_verbosity")
     log_level = LaunchConfiguration("log_level")
+
+    # Load Config Files
+    config = load_yaml('grasp_capture',"config/object_config.yaml")
 
     # URDF
     _robot_description_xml = Command(
@@ -101,9 +103,10 @@ def generate_launch_description() -> LaunchDescription:
         Node(
             package="grasp_capture",
             executable="create_planning_scene",
-            output="log",
+            output="screen",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[
+                config,
                 robot_description,
                 robot_description_semantic,
                 {"use_sim_time": use_sim_time},
@@ -120,7 +123,7 @@ def load_yaml(package_name: str, file_path: str):
     """
 
     package_path = get_package_share_directory(package_name)
-    absolute_file_path = path.join(package_path, file_path)
+    absolute_file_path = os.path.join(package_path, file_path)
     return parse_yaml(absolute_file_path)
 
 
@@ -150,7 +153,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "description_filepath",
-            default_value=path.join("urdf", "fingrip.urdf.xacro"),
+            default_value=os.path.join("urdf", "fingrip.urdf.xacro"),
             description="Path to xacro or URDF description of the robot, relative to share of `description_package`.",
         ),
         # Robot selection
@@ -162,7 +165,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # Miscellaneous
         DeclareLaunchArgument(
             "rviz_config",
-            default_value=path.join(
+            default_value=os.path.join(
                 get_package_share_directory("grasp_capture"),
                 "rviz",
                 "grasp_capture.rviz",
