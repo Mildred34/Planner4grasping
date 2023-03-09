@@ -6,9 +6,6 @@ static const rclcpp::Logger LOGGER = rclcpp::get_logger("MoveItCreatePlanningSce
 MoveItCreatePlanningScene::MoveItCreatePlanningScene() : Node("ex_follow_target"),
                                            _move_group_(std::shared_ptr<rclcpp::Node>(std::move(this)), MOVE_GROUP)
 {
-
-  this->declare_parameter("name","coude.stl");
-
   // Use upper joint velocity and acceleration limits
   this->_move_group_.setMaxAccelerationScalingFactor(1.0);
   this->_move_group_.setMaxVelocityScalingFactor(1.0);
@@ -57,10 +54,14 @@ MoveItCreatePlanningScene::MoveItCreatePlanningScene() : Node("ex_follow_target"
   RCLCPP_WARN(LOGGER, "Initialization successful.");
 
   // Test Parameters
-  rclcpp::Parameter str_param = this->get_parameter("name");
+  rclcpp::Parameter str_param = this->get_parameter("model_file");
+  rclcpp::Parameter use_sim_time_param = this->get_parameter("use_sim_time");
   std::string my_str = str_param.as_string();
+  bool my_bool = use_sim_time_param.as_bool();
 
-  RCLCPP_INFO(LOGGER,"str: %s",my_str.c_str());
+  RCLCPP_WARN(LOGGER,"str: %s",my_str.c_str());
+  RCLCPP_WARN(LOGGER,"Use sim time= %d",my_bool);
+
 }
 
 void MoveItCreatePlanningScene::_target_pose_callback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
@@ -96,12 +97,6 @@ void MoveItCreatePlanningScene::_timer_callback()
 
   // Publish once the collision object
   _timer_->cancel();
-
-  // Test Parameters
-  rclcpp::Parameter str_param = this->get_parameter("name");
-  std::string my_str = str_param.as_string();
-
-  RCLCPP_WARN(LOGGER,"After timer name: %s",my_str.c_str());
 
 }
 

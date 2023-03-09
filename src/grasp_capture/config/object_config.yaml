@@ -1,30 +1,19 @@
-create_planning_scene:
-  ros__parameters:
-    coude:
-      offset_pos:
-        x: 0.5
-        y: -0.17
-        z: 0.5
-      offset_rot:
-        r: 0.00027054006212198913
-        p: -0.00873299329306388
-        y: -0.05011673865631564
-      model_file: "coude100_rototrans_singleface_simplified.stl"
-      scale:
-        - 0.001
-        - 0.001
-        - 0.001
-      pose_type:
-        r:
-          - 0.3358
-          - 1.5707963 # rad(pi/2)
-        p:
-          - 0.0
-          - 0.979
-        z:
-          - 0.692
-          - 0.733
-        sym_ax_z:
-          - false
-          - false
-    name: "coude100_rototrans_singleface_simplified.stl"
+object_type: "coude"
+coude:
+  offset_pos: [0.5,-0.17,0.5] #x,y,z
+  offset_rot: [0.00027054006212198913,-0.00873299329306388,-0.05011673865631564] # rpy
+  model_file: "coude100_rototrans_singleface_simplified.stl"
+  scale: [0.001,0.001,0.001]
+  pose_type:
+    r:
+      - 0.3358
+      - 1.5707963 # rad(pi/2)
+    p:
+      - 0.0
+      - 0.979
+    z:
+      - 0.692
+      - 0.733
+    sym_ax_z:
+      - false
+      - false

@@ -29,9 +29,21 @@ def generate_launch_description() -> LaunchDescription:
             package="ros_gz_sim",
             executable="create",
             output="log",
-            arguments=["-file", model, "--ros-args", "--log-level", log_level],
+            arguments=["-file", model,"-x","0.5","-y","-0.17","-z","0.5","--ros-args", "--log-level", log_level],
             parameters=[{"use_sim_time": use_sim_time}],
         ),
+        # ros_gz_bridge (clock -> ROS 2)
+        Node(
+            package="ros_gz_bridge",
+            executable="parameter_bridge",
+            output="log",
+            arguments=[
+                "/gazebo/entity/position@ros_gz_interfaces/srv/SetEntityPose",
+                "--ros-args",
+                "--log-level",
+                log_level,
+            ],
+        )
     ]
 
     return LaunchDescription(declared_arguments + nodes)

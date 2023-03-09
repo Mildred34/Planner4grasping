@@ -33,9 +33,14 @@ def generate_launch_description() -> LaunchDescription:
     use_sim_time = LaunchConfiguration("use_sim_time")
     ign_verbosity = LaunchConfiguration("ign_verbosity")
     log_level = LaunchConfiguration("log_level")
+    object_type = LaunchConfiguration("object_type")
+    object_offset_pos = LaunchConfiguration("object_offset_pos")
+    offset_rot = LaunchConfiguration("offset_rot")
+    model_file = LaunchConfiguration("model_file")
 
     # Load Config Files
     config = load_yaml('grasp_capture',"config/object_config.yaml")
+    config = config[config["object_type"]]
 
     # URDF
     _robot_description_xml = Command(
@@ -93,12 +98,16 @@ def generate_launch_description() -> LaunchDescription:
                 ("use_sim_time", use_sim_time),
                 ("ign_verbosity", ign_verbosity),
                 ("log_level", log_level),
+                ("object_type",object_type),
             ],
         ),
     ]
 
     # List of nodes to be launched
     # Create Planning scene
+    config.update({"use_sim_time": use_sim_time})
+    print("CONFIG:\n",config)
+    
     nodes = [
         Node(
             package="grasp_capture",
@@ -106,10 +115,10 @@ def generate_launch_description() -> LaunchDescription:
             output="screen",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[
-                config,
                 robot_description,
                 robot_description_semantic,
-                {"use_sim_time": use_sim_time},
+                config,
+                
             ],
         ),
     ]
@@ -186,5 +195,25 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "log_level",
             default_value="warn",
             description="The level of logging that is applied to all ROS 2 nodes launched by this script.",
+        ),
+        DeclareLaunchArgument(
+            "object_type",
+            default_value="coude",
+            description="Object type to use for simulation.",
+        ),
+        DeclareLaunchArgument(
+            "model_file",
+            default_value="coude100_rototrans_singleface_simplified.stl",
+            description="model file name",
+        ),
+        DeclareLaunchArgument(
+            "object_offset_pos",
+            default_value="[0,0,0]",
+            description="If true, use simulated clock.",
+        ),
+        DeclareLaunchArgument(
+            "offset_rot",
+            default_value="[0,0,0]",
+            description="If true, use simulated clock.",
         ),
     ]
