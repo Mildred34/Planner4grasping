@@ -1,6 +1,9 @@
 """Launch script for spawning Franka Emika Panda into Ignition Gazebo world"""
-
+import os
 from typing import List
+
+import yaml
+from ament_index_python.packages import get_package_share_directory
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -21,6 +24,14 @@ def generate_launch_description() -> LaunchDescription:
     log_level = LaunchConfiguration("log_level")
     config_file_name = LaunchConfiguration("config_file_name")
     config_path = LaunchConfiguration("config_path")
+    object_type = LaunchConfiguration("object_type")
+    object_offset_pos = LaunchConfiguration("object_offset_pos")
+    object_offset_rot = LaunchConfiguration("object_offset_rot")
+    object_model_file = LaunchConfiguration("object_model_file")
+
+    # Load Config Files
+    config = load_yaml('grasp_capture',"config/object_config.yaml")
+    config = config[config["object_type"]]
 
     # List of nodes to be launched
     nodes = [
@@ -29,7 +40,8 @@ def generate_launch_description() -> LaunchDescription:
             package="ros_gz_sim",
             executable="create",
             output="log",
-            arguments=["-file", model,"-x","0.5","-y","-0.17","-z","0.5","--ros-args", "--log-level", log_level],
+            arguments=["-file", model,"-x", str(config["offset_pos"][0]),"-y",str(config["offset_pos"][1]),"-z",str(config["offset_pos"][2]), \
+                       "-R",str(config["offset_rot"][0]),"-P",str(config["offset_rot"][1]),"-Y",str(config["offset_rot"][2]),"--ros-args", "--log-level", log_level],
             parameters=[{"use_sim_time": use_sim_time}],
         ),
         # ros_gz_bridge (clock -> ROS 2)
@@ -48,7 +60,27 @@ def generate_launch_description() -> LaunchDescription:
 
     return LaunchDescription(declared_arguments + nodes)
 
+def load_yaml(package_name: str, file_path: str):
+    """
+    Load yaml configuration based on package name and file path relative to its share.
+    """
 
+    package_path = get_package_share_directory(package_name)
+    absolute_file_path = os.path.join(package_path, file_path)
+    return parse_yaml(absolute_file_path)
+
+
+def parse_yaml(absolute_file_path: str):
+    """
+    Parse yaml from file, given its absolute file path.
+    """
+
+    try:
+        with open(absolute_file_path, "r") as file:
+            return yaml.safe_load(file)
+    except EnvironmentError:
+        return None
+    
 def generate_declared_arguments() -> List[DeclareLaunchArgument]:
     """
     Generate list of all launch arguments that are declared for this launch script.
@@ -83,12 +115,31 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "config_path",
             default_value = PathJoinSubstitution(
                     [
-                        FindPackageShare("fingrip_description"),
-                        "ressources",
-                        LaunchConfiguration("object_type"),
+                        FindPackageShare("grasp_capture"),
+                        "config",
                         LaunchConfiguration("config_file_name"),
                     ]
                 ),
             description="Object Config Path",
+        ),
+        DeclareLaunchArgument(
+            "object_type",
+            default_value="coude",
+            description="Object type to use for simulation.",
+        ),
+        DeclareLaunchArgument(
+            "object_model_file",
+            default_value="coude100_rototrans_singleface_simplified.stl",
+            description="model file name",
+        ),
+        DeclareLaunchArgument(
+            "object_offset_pos",
+            default_value="[0,0,0]",
+            description="If true, use simulated clock.",
+        ),
+        DeclareLaunchArgument(
+            "object_offset_rot",
+            default_value="[0,0,0]",
+            description="If true, use simulated clock.",
         ),
     ]

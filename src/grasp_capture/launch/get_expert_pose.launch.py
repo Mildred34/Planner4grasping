@@ -34,6 +34,7 @@ def generate_launch_description() -> LaunchDescription:
     use_sim_time = LaunchConfiguration("use_sim_time")
     ign_verbosity = LaunchConfiguration("ign_verbosity")
     log_level = LaunchConfiguration("log_level")
+    object_type = LaunchConfiguration("object_type")
 
     # URDF
     _robot_description_xml = Command(
@@ -80,7 +81,7 @@ def generate_launch_description() -> LaunchDescription:
                     [
                         FindPackageShare("grasp_capture"),
                         "launch",
-                        "default.launch.py",
+                        "create_planning_scene.launch.py",
                     ]
                 )
             ),
@@ -91,27 +92,28 @@ def generate_launch_description() -> LaunchDescription:
                 ("use_sim_time", use_sim_time),
                 ("ign_verbosity", ign_verbosity),
                 ("log_level", log_level),
+                ("object_type", log_level),
             ],
         ),
     ]
 
     # List of nodes to be launched
     # Create Planning scene
-    nodes = [
-        Node(
-            package="grasp_capture",
-            executable="create_planning_scene",
-            output="log",
-            arguments=["--ros-args", "--log-level", log_level],
-            parameters=[
-                robot_description,
-                robot_description_semantic,
-                {"use_sim_time": use_sim_time},
-            ],
-        ),
-    ]
+    # nodes = [
+    #     Node(
+    #         package="grasp_capture",
+    #         executable="get_expert_pose_node",
+    #         output="log",
+    #         arguments=["--ros-args", "--log-level", log_level],
+    #         parameters=[
+    #             robot_description,
+    #             robot_description_semantic,
+    #             {"use_sim_time": use_sim_time},
+    #         ],
+    #     ),
+    # ]
 
-    return LaunchDescription(declared_arguments + launch_descriptions + nodes)
+    return LaunchDescription(declared_arguments + launch_descriptions)# + nodes)
 
 
 def load_yaml(package_name: str, file_path: str):
@@ -183,5 +185,10 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "log_level",
             default_value="warn",
             description="The level of logging that is applied to all ROS 2 nodes launched by this script.",
+        ),
+        DeclareLaunchArgument(
+            "object_type",
+            default_value="coude",
+            description="Object type to use for simulation.",
         ),
     ]

@@ -31,6 +31,12 @@ using namespace std::chrono_literals;
 
 const std::string MOVE_GROUP = "arm";
 
+// Collision object type
+typedef enum {
+  mesh,
+  box
+ } meshtype;
+
 class MoveItCreatePlanningScene : public rclcpp::Node
 {
 public:
@@ -46,13 +52,14 @@ public:
 
   // 
   moveit::planning_interface::PlanningSceneInterface _planning_scene_interface_;
-  moveit_msgs::msg::CollisionObject _collision_objects;
+  std::vector<moveit_msgs::msg::CollisionObject> _collision_objects;
 
 private:
   /// Callback that plans and executes trajectory each time the target pose is changed
   void _target_pose_callback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg);
   void _timer_callback();
+  void _AddObstacle2planningscene(meshtype type,std::string name,geometry_msgs::msg::Quaternion orientation,geometry_msgs::msg::Point position,float dim_X,float dim_Y,float dim_Z);
   rclcpp::TimerBase::SharedPtr _timer_;
   rclcpp::Publisher<moveit_msgs::msg::PlanningScene>::SharedPtr planning_scene_diff_publisher;
-
+  rclcpp::Parameter _object_name;
 };
