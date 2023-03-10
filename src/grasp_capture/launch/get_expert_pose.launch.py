@@ -92,7 +92,7 @@ def generate_launch_description() -> LaunchDescription:
                 ("use_sim_time", use_sim_time),
                 ("ign_verbosity", ign_verbosity),
                 ("log_level", log_level),
-                ("object_type", log_level),
+                ("object_type", object_type),
             ],
         ),
     ]
@@ -106,7 +106,8 @@ def generate_launch_description() -> LaunchDescription:
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[
-                {"use_sim_time": use_sim_time},
+                use_sim_time,
+                object_type,
             ],
         ),
     ]

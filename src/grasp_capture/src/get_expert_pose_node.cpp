@@ -4,6 +4,7 @@ GetPose::GetPose() : Node("get_expert_pose_node")
 {
     rclcpp::Parameter name_param = this->get_parameter("object");
     _name = name_param.as_string();
+    
     ObjectSimulation object(_name);
    //_object = ObjectSimulation(_name);
 

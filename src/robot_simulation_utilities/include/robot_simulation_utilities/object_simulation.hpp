@@ -3,6 +3,7 @@
 // Roscpp
 #include "rclcpp/rclcpp.hpp"
 
+
 // Standard library
 #include <string>
 
@@ -21,7 +22,10 @@ class ObjectSimulation
         // Destructor
         ~ObjectSimulation()=default;
 
+        // Reset object position
+        int ObjectSimulation::ResetSimulation();
+
     private:
-    
         string _name;
+        string _meshpath;
 };

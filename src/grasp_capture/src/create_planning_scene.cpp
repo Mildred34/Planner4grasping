@@ -141,6 +141,8 @@ void MoveItCreatePlanningScene::_AddObstacle2planningscene(meshtype type, std::s
     // Adding it to the list of collision object
     _collision_objects.push_back(collision_object);
 
+    RCLCPP_INFO(LOGGER, "BOX has been had to planning scene");
+
   }
   // If Mesh
   else

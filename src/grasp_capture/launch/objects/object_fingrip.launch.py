@@ -98,12 +98,6 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="warn",
             description="The level of logging that is applied to all ROS 2 nodes launched by this script.",
         ),
-        # Object Model for Ignition Gazebo
-        DeclareLaunchArgument(
-            "object_type",
-            default_value="coude",
-            description="Name of the object type to use.",
-        ),
         # Object Config Name
         DeclareLaunchArgument(
             "config_file_name",
@@ -122,10 +116,11 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
                 ),
             description="Object Config Path",
         ),
+        # Object Model for Ignition Gazebo
         DeclareLaunchArgument(
             "object_type",
             default_value="coude",
-            description="Object type to use for simulation.",
+            description="Name of the object type to use.",
         ),
         DeclareLaunchArgument(
             "object_model_file",
