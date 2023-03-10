@@ -99,22 +99,19 @@ def generate_launch_description() -> LaunchDescription:
 
     # List of nodes to be launched
     # Create Planning scene
-    # nodes = [
-    #     Node(
-    #         package="grasp_capture",
-    #         executable="get_expert_pose_node",
-    #         output="log",
-    #         arguments=["--ros-args", "--log-level", log_level],
-    #         parameters=[
-    #             robot_description,
-    #             robot_description_semantic,
-    #             {"use_sim_time": use_sim_time},
-    #         ],
-    #     ),
-    # ]
+    nodes = [
+        Node(
+            package="grasp_capture",
+            executable="get_expert_pose",
+            output="log",
+            arguments=["--ros-args", "--log-level", log_level],
+            parameters=[
+                {"use_sim_time": use_sim_time},
+            ],
+        ),
+    ]
 
-    return LaunchDescription(declared_arguments + launch_descriptions)# + nodes)
-
+    return LaunchDescription(declared_arguments + launch_descriptions + nodes)
 
 def load_yaml(package_name: str, file_path: str):
     """

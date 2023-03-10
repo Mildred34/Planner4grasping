@@ -1,6 +1,11 @@
-#include "robot_simulation_pkg/object_simulation.hpp"
+#include "robot_simulation_utilities/object_simulation.hpp"
 
 static const rclcpp::Logger LOGGER = rclcpp::get_logger("ObjectSimulation");
+
+ObjectSimulation::ObjectSimulation()
+{
+    RCLCPP_INFO(LOGGER, "Initialization successful.");
+}
 
 ObjectSimulation::ObjectSimulation(const ObjectSimulation& copy)
 {

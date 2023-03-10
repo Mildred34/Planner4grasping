@@ -3,6 +3,10 @@
 using namespace std::chrono_literals;
 static const rclcpp::Logger LOGGER = rclcpp::get_logger("MoveItCreatePlanningScene");
 
+/**
+ * @brief Construct a new Move It Create Planning Scene:: Move It Create Planning Scene object
+ * 
+ */
 MoveItCreatePlanningScene::MoveItCreatePlanningScene() : Node("ex_follow_target"),
                                            _move_group_(std::shared_ptr<rclcpp::Node>(std::move(this)), MOVE_GROUP)
 {
@@ -42,6 +46,11 @@ MoveItCreatePlanningScene::MoveItCreatePlanningScene() : Node("ex_follow_target"
 
 }
 
+/**
+ * @brief 
+ * 
+ * @param msg 
+ */
 void MoveItCreatePlanningScene::_target_pose_callback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
 {
   // Return if target pose is unchanged
@@ -60,6 +69,10 @@ void MoveItCreatePlanningScene::_target_pose_callback(const geometry_msgs::msg::
   _previous_target_pose_ = msg->pose;
 }
 
+/**
+ * @brief 
+ * 
+ */
 void MoveItCreatePlanningScene::_timer_callback()
 {
   RCLCPP_INFO(LOGGER, "Adding collision object to the planning scene...");
@@ -83,6 +96,17 @@ void MoveItCreatePlanningScene::_timer_callback()
 
 }
 
+/**
+ * @brief 
+ * 
+ * @param type 
+ * @param name 
+ * @param orientation 
+ * @param position 
+ * @param dim_X 
+ * @param dim_Y 
+ * @param dim_Z 
+ */
 void MoveItCreatePlanningScene::_AddObstacle2planningscene(meshtype type, std::string name, geometry_msgs::msg::Quaternion orientation, geometry_msgs::msg::Point position, float dim_X, float dim_Y, float dim_Z)
 {
   // If box
@@ -121,6 +145,9 @@ void MoveItCreatePlanningScene::_AddObstacle2planningscene(meshtype type, std::s
   // If Mesh
   else
   {
+    // Mesh need to ne already inside Gazebo
+    // Getting Orientation / Position from Gazebo
+
     // Assert if Mesh found
 
     // If not found
@@ -131,10 +158,10 @@ int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
 
-  auto target_follower = std::make_shared<MoveItCreatePlanningScene>();
+  auto create_PlS = std::make_shared<MoveItCreatePlanningScene>();
 
   rclcpp::executors::SingleThreadedExecutor executor;
-  executor.add_node(target_follower);
+  executor.add_node(create_PlS);
   executor.spin();
 
   rclcpp::shutdown();

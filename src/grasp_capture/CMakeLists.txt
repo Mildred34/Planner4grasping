@@ -23,6 +23,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(robot_simulation_utilities REQUIRED)
 
 install(DIRECTORY
   launch config rviz worlds
@@ -31,11 +32,16 @@ install(DIRECTORY
 
 ## Install Cpp node ##
 # Install cpp "include" directory
-include_directories(include)
+include_directories(
+      include
+      )
 
 ## Create Cpp executable
 set(NODE_0 create_planning_scene)
+set(NODE_1 get_expert_pose_node)
+
 set(EXECUTABLE_0 create_planning_scene)
+set(EXECUTABLE_1 get_expert_pose)
 
 # Premier arg = nom de l'exe
 add_executable(${EXECUTABLE_0} src/${NODE_0}.cpp)
@@ -46,9 +52,21 @@ ament_target_dependencies(${EXECUTABLE_0} rclcpp
                                  tf2_geometry_msgs
                                  )
 
-# Install Cpp executables
+add_executable(${EXECUTABLE_1} src/${NODE_1}.cpp)
+ament_target_dependencies(${EXECUTABLE_1} rclcpp
+                                 geometry_msgs
+                                 tf2_ros
+                                 tf2_geometry_msgs
+                                 robot_simulation_utilities
+                                 )
+
+## Install Cpp executables ##
 install(TARGETS
 ${EXECUTABLE_0}
+ DESTINATION lib/${PROJECT_NAME})
+
+install(TARGETS
+${EXECUTABLE_1}
  DESTINATION lib/${PROJECT_NAME})
 
 

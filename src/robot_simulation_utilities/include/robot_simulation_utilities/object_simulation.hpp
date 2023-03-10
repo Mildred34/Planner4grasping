@@ -12,6 +12,7 @@ class ObjectSimulation
 {
     public:
         // Constructor
+        ObjectSimulation();
         ObjectSimulation(string name);
 
         // Copy Constructor
